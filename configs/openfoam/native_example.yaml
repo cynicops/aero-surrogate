@@ -1,0 +1,5 @@
+# Native install on a laptop (UNTESTED here: edit bashrc to match your install).
+kind: native
+bashrc: /usr/lib/openfoam/openfoam2512/etc/bashrc
+version_label: "OpenFOAM v2512 (native)"
+n_procs: 4

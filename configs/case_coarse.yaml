@@ -1,0 +1,21 @@
+# Coarse smoke-test case settings used in the cloud workspace (wall functions, y+ ~ 30-60).
+# For the laptop campaign, copy to case_production.yaml and set y_plus_target: 1, more
+# boundary-layer layers, smaller surface_size, and div_turb: "bounded Gauss limitedLinear 1".
+elements:
+  - {airfoil: s1223, chord: 0.55, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.27, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.18, te_thickness: 0.001}
+mesh:
+  y_plus_target: 50.0
+  bl_layers: 8
+  surface_size: 0.008
+  far_size: 0.6
+flow:
+  turbulence_model: kOmegaSST
+  ground: moving
+solver:
+  max_iter: 3000
+convergence:
+  min_iter: 300
+  window: 200
+  wall_clock_limit_s: 1200

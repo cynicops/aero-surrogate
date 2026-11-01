@@ -1,0 +1,9 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+transportModel  Newtonian;
+nu              {{ nu }};   // = U_inf * c_ref / Re with U_inf = 1, c_ref = 1

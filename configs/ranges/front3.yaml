@@ -1,0 +1,18 @@
+# Parameter space for the 3-element FSAE front wing (v1).
+# DRAFT ranges proposed in session 1 and accepted by Chaitra ("Front, 3 elements (Recommended)").
+# Re and h/c are based on c_ref = sum of element chords. Flap angles are relative to the
+# previous element's chord (see docs/conventions.md).
+elements:
+  - {airfoil: s1223, chord: 0.55, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.27, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.18, te_thickness: 0.001}
+parameters:
+  aoa_deg:                {low: 0.0,   high: 10.0}
+  flap1_deg:              {low: 5.0,   high: 35.0}
+  flap2_deg:              {low: 5.0,   high: 35.0}
+  gap1:                   {low: 0.008, high: 0.03}
+  gap2:                   {low: 0.008, high: 0.03}
+  overlap1:               {low: 0.0,   high: 0.04}
+  overlap2:               {low: 0.0,   high: 0.04}
+  ride_height_over_chord: {low: 0.05,  high: 0.5}
+  re:                     {low: 2.0e5, high: 1.0e6, scale: log}

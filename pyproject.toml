@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aerosurrogate"
+version = "0.1.0"
+description = "2D OpenFOAM automation for multi-element wings in ground effect + ensemble neural surrogate with active learning"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+# Exact pins for reproducibility (CLAUDE.md rule 5). The full transitive lock is requirements-lock.txt.
+dependencies = [
+  "numpy==2.5.4",
+  "scipy==1.18.1",
+  "pandas==3.1.0",
+  "matplotlib==3.11.2",
+  "jinja2==3.1.6",
+  "pyyaml==6.0.3",
+  "gmsh==4.15.2",
+  "neuralfoil==0.3.3",
+  "aerosandbox==4.2.10",
+  "torch==2.15.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==9.2.0"]
+
+[project.scripts]
+aerosurrogate = "aerosurrogate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+aerosurrogate = ["foam/templates/**/*", "report/templates/*", "starccm/templates/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "openfoam: needs an OpenFOAM launcher (Docker image or native install)",
+  "slow: takes more than ~10 s",
+]
+addopts = "-m 'not openfoam'"

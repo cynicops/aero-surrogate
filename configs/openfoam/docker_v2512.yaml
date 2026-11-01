@@ -1,0 +1,7 @@
+# How to call OpenFOAM. Used in the cloud workspace (no native install possible there).
+kind: docker
+image: opencfd/openfoam-default:2512
+# digest recorded 2026-10-31 (Phase 0): sha256:33fb575aa9980d2bc42fd58c75ae698c489293ba30c991380fe3f899c622f319
+bashrc: /usr/lib/openfoam/openfoam2512/etc/bashrc
+version_label: "OpenFOAM v2512 (ESI/OpenCFD), Docker image opencfd/openfoam-default:2512"
+n_procs: 2
