@@ -39,10 +39,17 @@ by up to ~35 % across 12k/25k/52k cells at h/c = 0.2).
   0.02, h/c 0.2, Re 5e5) does **not converge** and shows separated flaps (CD 0.62; flaps carry
   CD 0.39 and 0.28). A milder setting (flaps 8/8, AoA 2) still separates (CD 0.12-0.14) on both
   the wall-function mesh and a low-Re (y+ ~ 1, 17 layers, potentialFoam start) mesh. Slot
-  refinement (~10 cells across) did not change this. Cause **not established**: possibly
-  physical (S1223 as a flap section is extremely cambered), possibly the placement convention,
-  possibly numerics. **This needs your input: what sections, chords and angles does the
-  Formula Manipal front wing actually use?**
+  refinement (~10 cells across) did not change this. Cause **not established**.
+  *Correction (later in session 1):* a filled-contour plot of Ux for the mild low-Re case shows
+  the reversed flow is a thin leading-edge separation bubble on flap 1's **upper (pressure)
+  surface**, plus a small pocket at the main-element trailing edge; the flap-2 wake is slow but
+  not reversed. (An earlier quick scatter plot had been read as "large reversed regions behind
+  both flaps"; that reading was wrong.) Leading hypothesis, untested: flap angles are measured
+  from the previous element's **chord**, but S1223's strongly cambered trailing edge turns the
+  flow much more steeply, so flap 1 meets the flow at a **negative effective incidence** at these
+  settings. Test: sweep flap 1 from 15 to 35 deg relative, or define flap angles from the
+  previous element's trailing-edge camber direction. **This also needs your input: what
+  sections, chords and angles does the Formula Manipal front wing actually use?**
 
 ## Gate 3 (Phase 3): PASSED on a substitute dataset (single element)
 
