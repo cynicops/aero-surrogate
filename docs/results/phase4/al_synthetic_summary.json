@@ -1,0 +1,36 @@
+{
+  "target_rmse_cl": 0.05,
+  "runs_to_target_mean_curve": {
+    "active": null,
+    "space_filling": null
+  },
+  "runs_to_target_per_seed": {
+    "0": {
+      "active": null,
+      "space_filling": null
+    },
+    "1": {
+      "active": null,
+      "space_filling": null
+    },
+    "2": {
+      "active": null,
+      "space_filling": null
+    }
+  },
+  "final_mean_rmse": {
+    "active": {
+      "n_runs": 48,
+      "rmse_cl": 0.6305909062692721,
+      "rmse_cd": 0.02861226399174918,
+      "rmse_cm": 0.07534752833571583
+    },
+    "space_filling": {
+      "n_runs": 48,
+      "rmse_cl": 0.5258302757611193,
+      "rmse_cd": 0.02432251666479651,
+      "rmse_cm": 0.06289529164857165
+    }
+  },
+  "verdict": "neither method reached the target within the budget"
+}

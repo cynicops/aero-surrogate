@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "reference_length": "c_ref = sum of element chords; all lengths in the dataset are divided by c_ref",
+  "reference_area": "c_ref x unit span (2D, coefficients are per unit span)",
+  "dynamic_pressure": "q_inf = 0.5 rho U_inf^2",
+  "reynolds_number": "Re = U_inf c_ref / nu",
+  "moment_reference_point": "main-element quarter chord (on its chord line)",
+  "axes": "x downstream (freestream direction), y up, ground plane at y = 0",
+  "sign_conventions": {
+    "cl": "positive up (lift); a downforce wing has cl < 0. Downforce coefficient = -cl",
+    "cd": "positive downstream",
+    "cm": "positive nose-up (standard aerodynamic convention), pitch axis -z",
+    "aoa_deg": "main-element incidence; positive = leading edge down (more downforce)",
+    "flap_deg": "deflection relative to the previous element's chord; positive = TE towards suction side"
+  },
+  "geometry_definitions": {
+    "ride_height_over_chord": "ground to lowest point of the assembly / c_ref",
+    "gap_i": "min surface distance between element i-1 and element i / c_ref",
+    "overlap_i": "along element i-1 chord, from flap LE to element i-1 TE midpoint / c_ref (+ = flap LE upstream)"
+  },
+  "units": {
+    "wall_clock_s": "seconds",
+    "aoa_deg": "degrees",
+    "flap_deg": "degrees",
+    "other lengths": "non-dimensional (/ c_ref)",
+    "coefficients": "non-dimensional"
+  },
+  "created_utc": "2026-11-01T05:04:11Z",
+  "ranges_file": "configs/ranges/single_ge.yaml",
+  "case_config": "configs/case_single_coarse.yaml"
+}

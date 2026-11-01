@@ -1,0 +1,31 @@
+{
+  "dataset": "runs/phase3_single",
+  "ranges": "configs/ranges/single_ge.yaml",
+  "inputs": [
+    "aoa_deg",
+    "ride_height_over_chord",
+    "re"
+  ],
+  "n_cfd_rows": 32,
+  "n_usable_with_lowfi": 26,
+  "n_splits": 5,
+  "test_fraction": 0.25,
+  "ensemble": {
+    "n_members": 5,
+    "hidden": [
+      64,
+      64
+    ],
+    "activation": "silu",
+    "epochs": 1500,
+    "lr": 0.003,
+    "weight_decay": 0.0001,
+    "bootstrap": true,
+    "val_fraction": 0.15,
+    "patience": 200,
+    "seed": 0,
+    "threads": 2
+  },
+  "created_utc": "2026-11-01T05:15:40Z",
+  "provenance": "simpleFoam [OpenFOAM v2512 (build _87ed40d2-20251219)] | coarse meshes 10,579-17,358 cells | kOmegaSST (fully turbulent) | Re 2.1e+05-9.7e+05 | h/c 0.11-0.60"
+}

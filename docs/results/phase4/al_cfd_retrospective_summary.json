@@ -1,0 +1,36 @@
+{
+  "target_rmse_cl": 0.1,
+  "runs_to_target_mean_curve": {
+    "active": 14,
+    "space_filling": 14
+  },
+  "runs_to_target_per_seed": {
+    "0": {
+      "active": 6,
+      "space_filling": 6
+    },
+    "1": {
+      "active": 6,
+      "space_filling": 6
+    },
+    "2": {
+      "active": 14,
+      "space_filling": 8
+    }
+  },
+  "final_mean_rmse": {
+    "active": {
+      "n_runs": 20,
+      "rmse_cl": 0.10712588498839191,
+      "rmse_cd": 0.0036656223267568077,
+      "rmse_cm": 0.014281316036768446
+    },
+    "space_filling": {
+      "n_runs": 20,
+      "rmse_cl": 0.06778294726098559,
+      "rmse_cd": 0.00463933445083713,
+      "rmse_cm": 0.011181760619306534
+    }
+  },
+  "verdict": "active learning did NOT reach the target with fewer runs"
+}
