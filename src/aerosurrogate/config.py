@@ -41,6 +41,7 @@ class SolverConfig:
     div_u: str = "bounded Gauss linearUpwind grad(U)"
     div_turb: str = "bounded Gauss upwind"
     element_force_interval: int = 10
+    potential_init: bool = False  # run potentialFoam first (helps low-Re meshes start)
 
 
 @dataclass

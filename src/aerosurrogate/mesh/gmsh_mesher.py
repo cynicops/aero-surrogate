@@ -34,6 +34,7 @@ class MeshConfig:
     growth_rate: float = 0.15  # size increase per unit wall distance
     wake_size: float = 0.025
     wake_length: float = 1.5
+    slot_cells: float = 10.0  # target cells across each slot gap (slot refinement ball)
     y_plus_target: float = 50.0  # wall-function mesh by default (coarse smoke tests)
     bl_ratio: float = 1.2
     bl_layers: int = 8
@@ -214,8 +215,26 @@ def mesh_wing(wing: Wing, cfg: MeshConfig, out_dir: str | Path, name: str = "mes
         b_wake = box(x0 - 0.1, x1 + cfg.wake_length, 0.0, y1 + 0.15, s_wake)
         b_far_wake = box(x1, x1 + 3 * cfg.wake_length, 0.0, y1 + 0.5, 3 * s_wake)
         b_channel = box(x0 - 0.3, x1 + 0.3, 0.0, max(y0, 0.02), min(s_wake, max(y0 / 6, s_surf)))
+        # slot refinement: a ball around each slot, cell size ~ gap / slot_cells
+        slot_fields = []
+        for i in range(1, len(wing.polygons)):
+            prev, flap = wing.polygons[i - 1], wing.polygons[i]
+            te = 0.5 * (prev[0] + prev[-1])
+            gap = wing.achieved_gaps[i - 1]
+            le = flap[wing.le_indices[i]]
+            centre = 0.5 * (te + le)
+            radius = 0.5 * float(np.linalg.norm(te - le)) + 3.0 * gap
+            ball = f.add("Ball")
+            f.setNumber(ball, "XCenter", float(centre[0]))
+            f.setNumber(ball, "YCenter", float(centre[1]))
+            f.setNumber(ball, "ZCenter", 0.0)
+            f.setNumber(ball, "Radius", radius)
+            f.setNumber(ball, "Thickness", radius)
+            f.setNumber(ball, "VIn", gap / cfg.slot_cells / r)
+            f.setNumber(ball, "VOut", s_far)
+            slot_fields.append(ball)
         fmin = f.add("Min")
-        f.setNumbers(fmin, "FieldsList", [t_wall, t_le, t_te, b_wake, b_far_wake, b_channel])
+        f.setNumbers(fmin, "FieldsList", [t_wall, t_le, t_te, b_wake, b_far_wake, b_channel] + slot_fields)
         f.setAsBackgroundMesh(fmin)
 
         # ---- boundary layers

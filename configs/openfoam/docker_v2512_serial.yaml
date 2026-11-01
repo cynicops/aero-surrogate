@@ -1,0 +1,6 @@
+# Same image, one MPI rank per case: better throughput when running several small cases at once.
+kind: docker
+image: opencfd/openfoam-default:2512
+bashrc: /usr/lib/openfoam/openfoam2512/etc/bashrc
+version_label: "OpenFOAM v2512 (ESI/OpenCFD), Docker image opencfd/openfoam-default:2512"
+n_procs: 1

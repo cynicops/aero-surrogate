@@ -103,6 +103,12 @@ def run_openfoam(
         res.total_s = time.time() - t_start
         return res
 
+    # 2b) optional potential-flow initialisation
+    if cfg.solver.potential_init:
+        rc = launcher.run("potentialFoam -writep", case_dir, logs / "potentialFoam.log", timeout=900)
+        if rc != 0:
+            return fail("solver_failed", "potentialFoam: " + (log_failure_reason(_tail(logs / "potentialFoam.log")) or f"exit {rc}"))
+
     # 3) decompose
     if launcher.n_procs > 1:
         for d in case_dir.glob("processor*"):

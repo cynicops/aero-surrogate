@@ -1,0 +1,7 @@
+# Coarse single-element smoke settings (same as the Phase 0 sweep).
+elements:
+  - {airfoil: ls417, chord: 1.0, te_thickness: 0.001}
+mesh: {y_plus_target: 50.0, bl_layers: 8, surface_size: 0.008, far_size: 0.6}
+flow: {turbulence_model: kOmegaSST, ground: moving}
+solver: {max_iter: 3000}
+convergence: {min_iter: 300, window: 200, wall_clock_limit_s: 900}

@@ -1,0 +1,9 @@
+# Workspace smoke-test space: single element in ground effect (converges reliably on coarse
+# meshes, ~1 min/case). Used for the Phase 3 pipeline test because the 3-element S1223 setup
+# showed separated flaps in session 1 (see docs/phase2_report.md). NOT the SPEC's target wing.
+elements:
+  - {airfoil: ls417, chord: 1.0, te_thickness: 0.001}
+parameters:
+  aoa_deg:                {low: 0.0,  high: 8.0}
+  ride_height_over_chord: {low: 0.1,  high: 0.6}
+  re:                     {low: 2.0e5, high: 1.0e6, scale: log}

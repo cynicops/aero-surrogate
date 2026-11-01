@@ -1,0 +1,12 @@
+# Low-Re wall treatment (y+ ~ 1) for multi-element cases: flaps have short chords, so
+# wall-function meshes sized from the total-chord Re are too coarse for their boundary layers.
+elements:
+- {airfoil: s1223, chord: 0.55, te_thickness: 0.001}
+- {airfoil: s1223, chord: 0.27, te_thickness: 0.001}
+- {airfoil: s1223, chord: 0.18, te_thickness: 0.001}
+mesh: {y_plus_target: 1.0, bl_ratio: 1.2, bl_layers: 24, surface_size: 0.006, far_size: 0.6,
+  ground_y_plus_target: 30.0}
+flow: {turbulence_model: kOmegaSST, ground: moving}
+solver: {max_iter: 4000, potential_init: true, relax_u: 0.5, relax_p: 0.2, relax_turb: 0.5,
+  n_non_orth: 1}
+convergence: {min_iter: 400, window: 300, wall_clock_limit_s: 1500}

@@ -20,6 +20,7 @@ divSchemes
     div(phi,k)      {{ solver.div_turb }};
     div(phi,omega)  {{ solver.div_turb }};
     div((nuEff*dev2(T(grad(U))))) Gauss linear;
+    div(div(phi,U)) Gauss linear;   // used by potentialFoam -writep
 }
 laplacianSchemes { default Gauss linear limited corrected 0.5; }
 interpolationSchemes { default linear; }
