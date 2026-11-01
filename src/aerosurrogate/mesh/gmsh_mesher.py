@@ -112,9 +112,13 @@ def mesh_wing(wing: Wing, cfg: MeshConfig, out_dir: str | Path, name: str = "mes
 
     min_gap = min(wing.achieved_gaps) if wing.achieved_gaps else math.inf
     cap = min(cfg.bl_max_fraction_of_gap * min_gap, cfg.bl_max_fraction_of_ride_height * y0)
+    # Wall-function meshes (y+ >= 5) keep the first-cell height when refined, so refinement
+    # changes the discretisation, not the wall model; low-Re meshes (y+ ~ 1) refine it too.
+    r_wall = 1.0 if cfg.y_plus_target >= 5 else r
+    r_ratio = cfg.bl_ratio ** (1.0 / r) if r_wall == 1.0 else cfg.bl_ratio
     h1, n_layers, thickness = bl_plan(
-        first_cell_height(cfg.y_plus_target, re) / r,
-        cfg.bl_ratio,
+        first_cell_height(cfg.y_plus_target, re) / r_wall,
+        r_ratio,
         max(1, int(round(cfg.bl_layers * r))),
         cap,
     )
@@ -218,7 +222,7 @@ def mesh_wing(wing: Wing, cfg: MeshConfig, out_dir: str | Path, name: str = "mes
         bl = f.add("BoundaryLayer")
         f.setNumbers(bl, "CurvesList", all_wall)
         f.setNumber(bl, "Size", h1)
-        f.setNumber(bl, "Ratio", cfg.bl_ratio)
+        f.setNumber(bl, "Ratio", r_ratio)
         f.setNumber(bl, "Thickness", thickness)
         f.setNumber(bl, "Quads", 1)
         f.setNumbers(bl, "FanPointsList", [])
@@ -227,9 +231,10 @@ def mesh_wing(wing: Wing, cfg: MeshConfig, out_dir: str | Path, name: str = "mes
         g_h1 = None
         if cfg.ground_bl:
             g_cap = 0.25 * y0
+            g_rw = 1.0 if cfg.ground_y_plus_target >= 5 else r
             g_h1, g_n, g_thick = bl_plan(
-                first_cell_height(cfg.ground_y_plus_target, re) / r,
-                cfg.bl_ratio,
+                first_cell_height(cfg.ground_y_plus_target, re) / g_rw,
+                cfg.bl_ratio ** (1.0 / r) if g_rw == 1.0 else cfg.bl_ratio,
                 max(1, int(round(cfg.ground_bl_layers * r))),
                 g_cap,
             )
@@ -237,7 +242,7 @@ def mesh_wing(wing: Wing, cfg: MeshConfig, out_dir: str | Path, name: str = "mes
             f.setNumbers(gbl, "CurvesList", [c_ground])
             f.setNumbers(gbl, "PointsList", [p[0], p[1]])
             f.setNumber(gbl, "Size", g_h1)
-            f.setNumber(gbl, "Ratio", cfg.bl_ratio)
+            f.setNumber(gbl, "Ratio", cfg.bl_ratio ** (1.0 / r) if g_rw == 1.0 else cfg.bl_ratio)
             f.setNumber(gbl, "Thickness", g_thick)
             f.setNumber(gbl, "Quads", 1)
             f.setAsBoundaryLayer(gbl)

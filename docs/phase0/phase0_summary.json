@@ -1,0 +1,202 @@
+{
+  "aoa_deg": 4.0,
+  "re": 500000.0,
+  "section": "ls417 (LS(1)-0417 / GA(W)-1), TE 0.1% c",
+  "sweep": [
+    {
+      "case_id": "p0_h0.100",
+      "ride_height_over_chord": 0.1,
+      "status": "not_converged",
+      "cl": -0.86528295028475,
+      "cd": 0.07820054961161,
+      "cm": 0.15102147960565,
+      "cl_std": 0.09207647392895124,
+      "n_iter": 3000,
+      "wall_clock_s": 153.49,
+      "mesh_cells": 11513,
+      "y_plus_max": 48.3669084,
+      "residual_final": 0.06286113266
+    },
+    {
+      "case_id": "p0_h0.150",
+      "ride_height_over_chord": 0.15,
+      "status": "ok",
+      "cl": -1.0176104891505,
+      "cd": 0.065795753526845,
+      "cm": 0.15585945246229999,
+      "cl_std": 0.0005215645078719665,
+      "n_iter": 707,
+      "wall_clock_s": 46.61,
+      "mesh_cells": 11483,
+      "y_plus_max": 51.92914848,
+      "residual_final": 2.226757876e-05
+    },
+    {
+      "case_id": "p0_h0.200",
+      "ride_height_over_chord": 0.2,
+      "status": "ok",
+      "cl": -1.160851020546,
+      "cd": 0.05356158372888,
+      "cm": 0.16298633825025,
+      "cl_std": 0.00027518452271001534,
+      "n_iter": 640,
+      "wall_clock_s": 44.53,
+      "mesh_cells": 12080,
+      "y_plus_max": 54.30901764,
+      "residual_final": 8.755913522e-05
+    },
+    {
+      "case_id": "p0_h0.300",
+      "ride_height_over_chord": 0.3,
+      "status": "ok",
+      "cl": -1.310656594722,
+      "cd": 0.03453011338137,
+      "cm": 0.17150016783305,
+      "cl_std": 0.0003990290235900272,
+      "n_iter": 720,
+      "wall_clock_s": 54.38,
+      "mesh_cells": 13228,
+      "y_plus_max": 56.95481102,
+      "residual_final": 0.0001380364806
+    },
+    {
+      "case_id": "p0_h0.500",
+      "ride_height_over_chord": 0.5,
+      "status": "ok",
+      "cl": -1.159367831502,
+      "cd": 0.024235677469290003,
+      "cm": 0.14820253983005,
+      "cl_std": 0.00041990838610640117,
+      "n_iter": 819,
+      "wall_clock_s": 60.57,
+      "mesh_cells": 15666,
+      "y_plus_max": 56.2009614,
+      "residual_final": 1.083707065e-05
+    },
+    {
+      "case_id": "p0_h1.000",
+      "ride_height_over_chord": 1.0,
+      "status": "ok",
+      "cl": -0.9897605344410999,
+      "cd": 0.019874227792395,
+      "cm": 0.1238627222648,
+      "cl_std": 0.00021476718495244356,
+      "n_iter": 803,
+      "wall_clock_s": 68.66,
+      "mesh_cells": 21482,
+      "y_plus_max": 54.26233624,
+      "residual_final": 0.0003130226982
+    }
+  ],
+  "inviscid": [
+    {
+      "h": 0.1,
+      "cl_inviscid": -4.660011692012973
+    },
+    {
+      "h": 0.15,
+      "cl_inviscid": -3.131697611661078
+    },
+    {
+      "h": 0.2,
+      "cl_inviscid": -2.448178433328522
+    },
+    {
+      "h": 0.3,
+      "cl_inviscid": -1.831767092756057
+    },
+    {
+      "h": 0.5,
+      "cl_inviscid": -1.4067574172864965
+    },
+    {
+      "h": 1.0,
+      "cl_inviscid": -1.1561926860457148
+    }
+  ],
+  "freestream": {
+    "openfoam": [
+      {
+        "cl": -0.8933043543194,
+        "cd": 0.017773244220854998,
+        "cm": 0.1103538193486,
+        "status": "ok"
+      }
+    ],
+    "neuralfoil_free_transition_liftup_frame": {
+      "CL": 0.9074822884517968,
+      "CD": 0.009805925681592652,
+      "CM": -0.10676498929302211,
+      "analysis_confidence": 0.9856199505488772
+    },
+    "neuralfoil_forced_transition_liftup_frame": {
+      "CL": 0.775456015942218,
+      "CD": 0.016410177927948848,
+      "CM": -0.0845604811652974,
+      "analysis_confidence": 0.26814211237529123
+    },
+    "note": "OpenFOAM values are in the inverted (downforce) frame: compare -cl with NeuralFoil CL, +cm with -CM. h/c = 5 with a slip ground is close to, not exactly, freestream."
+  },
+  "gci": {
+    "cl": {
+      "phi1": -0.9841025676920501,
+      "phi2": -1.3252299145870001,
+      "phi3": -1.160851020546,
+      "r21": 1.4472553591587498,
+      "r32": 1.4380703590631072,
+      "p": 1.9523778344704152,
+      "phi_ext": -0.6616751752312645,
+      "e_a21": 0.3466380010520379,
+      "e_ext21": 0.48728954104722577,
+      "gci_fine": 0.4095449537553706,
+      "oscillatory": true,
+      "converged_iterations": 6
+    },
+    "cd": {
+      "phi1": 0.049433776620595005,
+      "phi2": 0.0571857134688,
+      "phi3": 0.05356158372888,
+      "r21": 1.4472553591587498,
+      "r32": 1.4380703590631072,
+      "p": 2.0330389612190545,
+      "phi_ext": 0.04251417540444799,
+      "e_a21": 0.15681457857653133,
+      "e_ext21": 0.16275985951318864,
+      "gci_fine": 0.17497148936381726,
+      "oscillatory": true,
+      "converged_iterations": 6
+    },
+    "cm": {
+      "phi1": 0.13284581647934998,
+      "phi2": 0.19058955247685,
+      "phi3": 0.16298633825025,
+      "r21": 1.4472553591587498,
+      "r32": 1.4380703590631072,
+      "p": 1.9737158514091067,
+      "phi_ext": 0.07909546761590959,
+      "e_a21": 0.43466732734090957,
+      "e_ext21": 0.6795629444212151,
+      "gci_fine": 0.5057587650096937,
+      "oscillatory": true,
+      "converged_iterations": 6
+    }
+  },
+  "gci_cells": [
+    52326,
+    24982,
+    12080
+  ],
+  "gci_wall_clock_s": [
+    184.83,
+    124.91,
+    44.53
+  ],
+  "gci_status": [
+    "ok",
+    "ok",
+    "ok"
+  ],
+  "validation": {
+    "status": "PENDING: no published reference data available in the workspace"
+  }
+}

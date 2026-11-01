@@ -1,0 +1,7 @@
+# One nominal 3-element front-wing case (fields of WingParams; see docs/conventions.md)
+aoa_deg: 4.0
+ride_height_over_chord: 0.2
+re: 5.0e+5
+flap_angles_deg: [20.0, 20.0]
+gaps: [0.015, 0.015]
+overlaps: [0.02, 0.02]

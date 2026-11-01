@@ -45,3 +45,15 @@ def test_refinement_increases_cells(tmp_path):
     n1 = mesh_wing(w, base, tmp_path, "a").n_cells
     n2 = mesh_wing(w, base.refined(1.5), tmp_path, "b").n_cells
     assert n2 > 1.8 * n1  # ideal 2D ratio is 1.5**2 = 2.25
+
+
+def test_wall_function_refinement_keeps_first_cell(tmp_path):
+    w = build_wing([ElementSpec("naca4412", 1.0)], WingParams(4, 0.3, 5e5))
+    base = MeshConfig(far_size=1.0, surface_size=0.02, wake_size=0.06, y_plus_target=50)
+    a = mesh_wing(w, base, tmp_path, "a")
+    b = mesh_wing(w, base.refined(1.5), tmp_path, "b")
+    assert np.isclose(a.first_cell_height, b.first_cell_height)  # same y+, wall model unchanged
+    assert b.bl_layers > a.bl_layers
+    low = MeshConfig(far_size=1.0, surface_size=0.02, wake_size=0.06, y_plus_target=1)
+    c, d = mesh_wing(w, low, tmp_path, "c"), mesh_wing(w, low.refined(1.5), tmp_path, "d")
+    assert d.first_cell_height < c.first_cell_height  # low-Re meshes refine the wall cell too

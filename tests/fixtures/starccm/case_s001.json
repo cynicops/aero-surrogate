@@ -1,0 +1,8 @@
+{"case_id": "s001",
+ "params": {"aoa_deg": 4, "re": 500000, "ride_height_over_chord": 0.2, "flap1_deg": 20, "flap2_deg": 20,
+            "gap1": 0.015, "gap2": 0.015, "overlap1": 0.02, "overlap2": 0.02},
+ "reports": {"cl": "CL", "cd": "CD", "cm": "CM"},
+ "lift_sign": -1, "moment_sign": -1,
+ "reference": {"length": 1.0, "area": "c_ref x unit span", "note": "synthetic"},
+ "turbulence_model": "k-omega SST", "mesh_cells": 123456, "converged": true,
+ "residual_final": 1e-5, "wall_clock_s": 600, "y_plus_max": 0.9}

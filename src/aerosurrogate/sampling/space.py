@@ -34,9 +34,10 @@ class Dim:
 
 
 class ParameterSpace:
-    def __init__(self, dims: list[Dim], elements: list[ElementSpec] | None = None):
+    def __init__(self, dims: list[Dim], elements: list[ElementSpec] | None = None, fixed: dict | None = None):
         self.dims = dims
         self.elements = elements or []
+        self.fixed = dict(fixed or {})  # parameters held constant (added as columns to every sample)
 
     @classmethod
     def from_yaml(cls, path: str | Path) -> "ParameterSpace":
@@ -49,7 +50,11 @@ class ParameterSpace:
             if dim.scale == "log" and dim.low <= 0:
                 raise ValueError(f"{dim.name}: log scale needs low > 0")
         elements = [ElementSpec(**e) for e in d.get("elements", [])]
-        return cls(dims, elements)
+        fixed = {k: float(v) for k, v in (d.get("fixed") or {}).items()}
+        clash = set(fixed) & {x.name for x in dims}
+        if clash:
+            raise ValueError(f"parameters both varied and fixed: {sorted(clash)}")
+        return cls(dims, elements, fixed)
 
     @property
     def names(self) -> list[str]:
@@ -57,7 +62,10 @@ class ParameterSpace:
 
     def from_unit(self, u: np.ndarray) -> pd.DataFrame:
         u = np.atleast_2d(u)
-        return pd.DataFrame({d.name: d.from_unit(u[:, i]) for i, d in enumerate(self.dims)})
+        df = pd.DataFrame({d.name: d.from_unit(u[:, i]) for i, d in enumerate(self.dims)})
+        for k, v in self.fixed.items():
+            df[k] = v
+        return df
 
     def to_unit(self, df: pd.DataFrame) -> np.ndarray:
         return np.column_stack([d.to_unit(df[d.name].to_numpy()) for d in self.dims])

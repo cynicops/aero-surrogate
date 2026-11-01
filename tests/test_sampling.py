@@ -31,3 +31,10 @@ def test_space_filling_better_than_random():
     d_sobol = qmc.discrepancy(sp.to_unit(sp.sobol(128, seed=0)))
     d_rand = qmc.discrepancy(sp.to_unit(sp.uniform(128, seed=0)))
     assert d_sobol < d_rand
+
+
+def test_fixed_parameters_added():
+    sp = ParameterSpace.from_yaml("configs/ranges/front3_reduced.yaml")
+    df = sp.sobol(8, seed=0)
+    assert len(sp.names) == 5 and (df["gap1"] == 0.015).all()
+    assert sp.contains(df).all()

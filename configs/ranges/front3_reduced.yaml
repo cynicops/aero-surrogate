@@ -1,0 +1,18 @@
+# Workspace-sized subset of front3.yaml for the coarse cloud campaign (Phase 3 smoke dataset):
+# 5 varied parameters, slot geometry fixed at nominal values. The full 9-parameter space
+# (front3.yaml) is meant for the laptop campaign.
+elements:
+  - {airfoil: s1223, chord: 0.55, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.27, te_thickness: 0.001}
+  - {airfoil: s1223, chord: 0.18, te_thickness: 0.001}
+parameters:
+  aoa_deg:                {low: 0.0,   high: 10.0}
+  flap1_deg:              {low: 5.0,   high: 35.0}
+  flap2_deg:              {low: 5.0,   high: 35.0}
+  ride_height_over_chord: {low: 0.05,  high: 0.5}
+  re:                     {low: 2.0e5, high: 1.0e6, scale: log}
+fixed:
+  gap1: 0.015
+  gap2: 0.015
+  overlap1: 0.02
+  overlap2: 0.02
