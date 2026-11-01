@@ -3,8 +3,7 @@
 Last updated: 1 Nov 2026 (end of session 1)
 
 ## Resume here
-1. **Push**: the repo is committed locally only. Create an empty GitHub repo and give the
-   `owner/repo` so it can be attached and pushed (the workspace GitHub token was invalid).
+1. Repo: https://github.com/cynicops/aero-surrogate (pushed 1 Nov 2026). Commit and push after every work block.
 2. **Decide the real 3-element geometry** (sections, chord split, flap angle ranges). With S1223
    on all three elements, 2D RANS separates on the flaps even at mild settings (docs/gates.md, Gate 2).
    Then re-run Gate 2's nominal case and a small 3-element campaign.
